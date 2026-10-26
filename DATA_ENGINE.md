@@ -17,3 +17,5 @@ The data engine prepares historical market data for quantitative research.
 - No live order execution.
 
 Status: Documentation created; data engine implementation pending.
+
+Update data engine status.
