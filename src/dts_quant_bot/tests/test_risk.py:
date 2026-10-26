@@ -1,0 +1,46 @@
+
+import pytest
+
+from dts_quant_bot.risk import (
+    MAX_RISK_PERCENT,
+    calculate_risk_amount,
+)
+
+
+def test_default_risk_is_one_percent():
+    assert calculate_risk_amount(1000) == pytest.approx(10.0)
+
+
+def test_lower_risk_is_allowed():
+    assert calculate_risk_amount(1000, 0.5) == pytest.approx(5.0)
+
+
+def test_risk_above_one_percent_is_rejected():
+    with pytest.raises(ValueError):
+        calculate_risk_amount(1000, 1.01)
+
+
+def test_hard_cap_is_one_percent():
+    assert MAX_RISK_PERCENT == 1.0
+
+
+@pytest.mark.parametrize("equity", [0, -1])
+def test_invalid_equity_is_rejected(equity):
+    with pytest.raises(ValueError):
+        calculate_risk_amount(equity)
+
+
+@pytest.mark.parametrize("risk", [0, -0.1])
+def test_invalid_risk_is_rejected(risk):
+    with pytest.raises(ValueError):
+        calculate_risk_amount(1000, risk)
+
+
+def test_boolean_equity_is_rejected():
+    with pytest.raises(ValueError):
+        calculate_risk_amount(True)
+
+
+def test_boolean_risk_is_rejected():
+    with pytest.raises(ValueError):
+        calculate_risk_amount(1000, True)
