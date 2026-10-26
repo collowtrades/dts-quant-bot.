@@ -16,3 +16,4 @@ The data engine prepares historical market data for quantitative research.
 - Maximum planned risk per trade: 1%.
 - No live order execution.
 
+Status: Documentation created; data engine implementation pending.
