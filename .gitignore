@@ -1,0 +1,27 @@
+
+# Python cache and environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Local market data
+data/
+*.csv
+*.parquet
+
+# Logs and test output
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editor and operating-system files
+.DS_Store
+.idea/
+.vscode/
